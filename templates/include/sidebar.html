@@ -1,0 +1,23 @@
+
+<div class="search-bar w3layouts-newsletter">
+    <h3 class="sear-head editContent" >Search</h3>
+    <form action="{% url 'search' %}" method="get" class="d-flex editContent" >
+        <input type="search" placeholder="Enter name..." name="q" class="form-control" required="">
+        <button type="submit" class="btn1 btn" ><span class="fa fa-search" aria-hidden="true" ></span></button>
+    </form>
+</div>
+<!--preference -->
+<form action="{% url 'filter' %}" method="get">
+    <div class="left-side my-4">
+        <h3 class="sear-head editContent" >Categories list</h3>
+        <ul class="w3layouts-box-list">
+            {% for category in view.get_category %}
+                <li class="editContent" >
+                    <input type="checkbox" class="checked" name="category" value="{{ category.id }}">
+                    <span class="span editContent" >{{ category.name }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <button type="submit">Search</button>
+</form>

@@ -1,0 +1,50 @@
+{% load institution_tags %}
+            <!-- header -->
+            <header class="header">
+                <div class="container-fluid px-lg-5">
+                    <!-- nav -->
+                    <nav class="py-4">
+                        <div id="logo">
+                            <h1> <a href="/" class="editContent" style="outline: none; outline-offset: -2px; cursor: inherit; color: rgb(255, 255, 255); font-size: 40px; background-color: rgba(0, 0, 0, 0); font-family: 'Source Sans Pro', sans-serif;">Django Education</a></h1>
+                        </div>
+
+                        <label for="drop" class="toggle">Menu</label>
+                        <input type="checkbox" id="drop">
+                        <ul class="menu mt-2">
+                            <li class="active"><a href="/">Home</a></li>
+                            <li>
+                                <!-- First Tier Drop Down -->
+                                <label for="drop-2" class="toggle">Category <span class="fa fa-angle-down" aria-hidden="true" ></span> </label>
+                                <a href="#">Category <span class="fa fa-angle-down" aria-hidden="true"></span></a>
+                                <input type="checkbox" id="drop-2">
+                                <ul>
+                                {% get_categories as categories %}
+                                    {% for category in categories %}
+                                        <li><a href="/">{{ category.name }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'profile' %}">Profile ({{ user.username }})</a></li>
+                            {% else %}
+                                <li><a href="{% url 'login' %}">Login</a></li>
+                                <li><a href="{% url 'register' %}">Register</a></li>
+                            {% endif %}
+
+                        </ul>
+                    </nav>
+                    <!-- //nav -->
+                </div>
+            </header>
+            <!-- //header -->
+            <!--/banner-->
+            <div class="banner-info">
+                <h3 class="mb-4 editContent">Django Education</h3>
+                <p class="editContent" >All Educational Institutions in your city</p>
+                <div class="ban-buttons">
+
+
+                </div>
+            </div>
+            <!--// banner-inner -->
+

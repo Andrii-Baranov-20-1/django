@@ -1,0 +1,18 @@
+{% extends "education/base.html" %}
+{% block title %}New Record{% endblock title %}
+{% block content %}
+<div class="container mt-5" style="margin-bottom: 50px;">
+    <h2>Create / Edit Record</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% if form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+            </div>
+        {% endif %}
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="{% url 'crud_list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock content %}

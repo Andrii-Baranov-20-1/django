@@ -1,0 +1,29 @@
+{% extends "education/base.html" %}
+
+{% block title %}Logged Out{% endblock title %}
+
+{% block content %}
+<div class="container text-center mt-5" style="margin-bottom: 50px;">
+    <h2>Your account, {{ username }}.</h2>
+    <p>Email: {{ email }}</p>
+    <p>
+        Status:
+        {% if is_admin %}
+            Administrator
+        {% else %}
+            Regular User
+        {% endif %}
+    </p>
+
+    <div class="mt-4">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary" style="margin-bottom: 10px;">Log out</button>
+        </form>
+       {% if is_admin %}
+            <a href="{% url 'admin_panel' %}" class="btn btn-secondary">Admin Panel</a>
+        {% endif %}
+        <a href="/crud-panel/" class="btn btn-info">CRUD Panel</a>
+    </div>
+</div>
+{% endblock content %}
